@@ -16,5 +16,14 @@ By utilizing Django as the framework, I learned about the importance of template
 
 <img width="1243" alt="Entries" src="https://github.com/user-attachments/assets/21b0e67f-33dc-4c37-b2eb-edd498d7a30b">
 
+```
+@login_required
+def topic(request, topic_id):
+    """ Show a single topic and all its entries """
+    topic = Topic.objects.get(id=topic_id)
+    # Make sure the topic belongs to the current user
+    if topic.owner != request.user:
+        raise Http404
+```
 
 This was done by restricting access to logged-in users by using decorators and then using foreign keys to tie data to specific users. This process ensures that user data is protected. For future attempts, I would like to make the app more stylized and interactive for users.
